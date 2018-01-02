@@ -3,7 +3,12 @@ import VideoItem from './videoItem';
 
 const VideoList = (props) => {
 
-   const videoList = props.videos.map(video => <VideoItem key = {video.etag} video = {video} />);
+   const videoList = props.videos.map(
+      video => <VideoItem 
+                  key = {video.etag} 
+                  video = {video} 
+                  onVideoSelect = {props.onVideoSelect}/>
+   );
 
    return(
       //col-md-4 is bootstrap style to float videoList to the left

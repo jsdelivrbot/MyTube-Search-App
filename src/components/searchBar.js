@@ -10,10 +10,12 @@ class SearchBar extends React.Component {
 
    render() {
       return(
-         <div>
+         <div className = "inputContainer">
             <input 
+               className = "inputField"
                value = {this.state.term}
                onChange = {this.handleInputChange}
+               placeholder = "Search"
                
             />
          </div>

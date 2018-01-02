@@ -11,10 +11,16 @@ const API_KEY = "AIzaSyCfcQhmSessmbt90yTCvAm9psZBp8YU1Gw";
 class App extends Component {
    constructor(props) {
       super(props);
-      this.state = { videos: [] };
+      this.state = { 
+         videos: [],
+         selectedVideo: null
+      };
 
-   YTSearch({ key: API_KEY, term: "iphone X" }, videos =>
-      this.setState({ videos })
+   YTSearch({ key: API_KEY, term: "iphone" }, videos =>
+      this.setState({ 
+         videos: videos,
+         selectedVideo: videos[0]
+      })
    );
 }
 
@@ -22,10 +28,15 @@ class App extends Component {
    render() {
       return(
          <div>
-            <h1>My Awesome Video Player</h1>
-            <SearchBar />
-            <VideoDetail video = {this.state.videos[0]}/>
-            <VideoList videos = {this.state.videos} />
+            <div className = "header">
+               <h1 className = "title" >MyTube</h1>
+               <SearchBar />
+            </div>
+            <VideoDetail video = {this.state.selectedVideo}/>
+            <VideoList 
+               videos = {this.state.videos} 
+               onVideoSelect = {selectedVideo => this.setState({ selectedVideo })}
+            />
          </div>
       );
    }
