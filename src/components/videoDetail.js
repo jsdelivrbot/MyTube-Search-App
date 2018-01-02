@@ -1,10 +1,13 @@
 import React from 'react';
 
 const VideoDetail = ({video}) => {
-   //Loading when data is being fetched
+
+   //Loading when waiting for data to be fetched
    if(!video) {
       return <div>Loading...</div>;
    }
+
+   //Render now playing frame when data is already fetched
    console.log(video);
    const videoId = video.id.videoId;
    const url = `https://www.youtube.com/embed/${videoId}`;
