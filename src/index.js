@@ -13,16 +13,22 @@ class App extends Component {
       super(props);
       this.state = { 
          videos: [],
-         selectedVideo: null
+         selectedVideo: null,
+         term: ''
       };
 
-   YTSearch({ key: API_KEY, term: "iphone" }, videos =>
-      this.setState({ 
-         videos: videos,
-         selectedVideo: videos[0]
-      })
-   );
-}
+      //first search when the app is loaded
+      this.videoSearch('iphone');
+   }  
+
+   videoSearch(term) {
+      YTSearch({ key: API_KEY, term}, videos =>
+         this.setState({ 
+            videos: videos,
+            selectedVideo: videos[0],
+         })
+      );
+   }
 
 
    render() {
@@ -30,7 +36,7 @@ class App extends Component {
          <div>
             <div className = "header">
                <h1 className = "title" >MyTube</h1>
-               <SearchBar />
+               <SearchBar onSearchTermChange = {term => this.videoSearch(term)} />
             </div>
             <VideoDetail video = {this.state.selectedVideo}/>
             <VideoList 
